@@ -26,6 +26,20 @@ class Config(BaseModel):
     experimental_quality_score: float = Field(default=1.0, ge=0.0, le=1.0)
     predicted_quality_score: float = Field(default=0.8, ge=0.0, le=1.0)
 
+    # pipeline toggles
+    build_graphs: bool = Field(
+        default=True,
+        description="Generate RNA graph representations during preprocessing.",
+    )
+    build_motif_membership: bool = Field(
+        default=True,
+        description="Compute motif membership features during preprocessing.",
+    )
+    allow_pseudoknots: bool = Field(
+        default=True,
+        description="Preserve pseudoknot information when parsing structures.",
+    )
+
     # splits
     train_ratio: float = Field(default=0.8, gt=0.0, lt=1.0)
     val_ratio: float = Field(default=0.1, gt=0.0, lt=1.0)
@@ -142,3 +156,7 @@ class Config(BaseModel):
 def get_default_config() -> Config:
     """Return a new default Config instance safely."""
     return Config()
+
+
+# HACK: shared default instance for convenience imports
+DEFAULT_CONFIG: Config = get_default_config()
