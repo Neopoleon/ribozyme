@@ -24,6 +24,11 @@ for m in ["numpy", "pandas", "Bio", "sklearn", "pydantic"]:
         print(f"[OK] {m}")
     except ImportError:
         print(f"[FAIL] {m}")
+try:
+    import tqdm  # noqa: F401
+    print("[OK] tqdm")
+except ImportError:
+    print("[FAIL] tqdm")
 PY
 
 if which cd-hit-est >/dev/null 2>&1; then
