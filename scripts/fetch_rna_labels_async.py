@@ -2,10 +2,15 @@
 """
 Async version using aiohttp for much faster fetching.
 
-Usage:
+Usage with directory:
     python scripts/fetch_rna_labels_async.py \
         --input-dir data/unzipped/bpRNA_1m_90_bpseqFiles \
         --output results/rna_labels.json
+
+Usage with JSON file list:
+    python scripts/fetch_rna_labels_async.py \
+        --input-json data/splits/fold1.json \
+        --output results/fold1_labels.json
 """
 
 from __future__ import annotations
@@ -19,7 +24,8 @@ from pathlib import Path
 from typing import Optional
 
 import aiohttp
-from tqdm.asyncio import tqdm
+import tqdm
+import tqdm.asyncio
 
 
 @dataclass
@@ -28,6 +34,7 @@ class RNALabel:
     bprna_id: str
     file_path: str
     rna_type: Optional[str]
+    reference_name: Optional[str] = None
     error: Optional[str] = None
 
 
@@ -38,7 +45,7 @@ def extract_bprna_id(file_path: Path) -> str:
 
 async def fetch_rna_type(session: aiohttp.ClientSession, file_path: Path,
                          semaphore: asyncio.Semaphore, timeout: float = 20.0) -> RNALabel:
-    """Fetch RNA type for a single file asynchronously."""
+    """Fetch RNA type and reference name for a single file asynchronously."""
     bprna_id = extract_bprna_id(file_path)
     url = f'https://bprna.cgrb.oregonstate.edu/search.php?query={bprna_id}'
 
@@ -48,15 +55,29 @@ async def fetch_rna_type(session: aiohttp.ClientSession, file_path: Path,
                 response.raise_for_status()
                 text = await response.text()
 
-                if 'RNA Type:</b>' not in text:
-                    return RNALabel(bprna_id, str(file_path), None, 'RNA Type not found')
+                # Extract RNA Type
+                rna_type = None
+                if 'RNA Type:</b>' in text:
+                    rna_type = text.split('RNA Type:</b>')[1].split('<br>')[0].strip()
 
-                rna_type = text.split('RNA Type:</b>')[1].split('<br>')[0].strip()
-                return RNALabel(bprna_id, str(file_path), rna_type)
+                # Extract Reference Name
+                reference_name = None
+                if 'Reference Name:</b>' in text:
+                    reference_name = text.split('Reference Name:</b>')[1].split('<br>')[0].strip()
+
+                # At least one field must be present, otherwise it's an error
+                if not rna_type and not reference_name:
+                    # Error case: neither field found
+                    return RNALabel(bprna_id, str(file_path), None, None, 'RNA Type and Reference Name not found')
+
+                # Success case: at least one field found, no error
+                return RNALabel(bprna_id, str(file_path), rna_type, reference_name, None)
         except asyncio.TimeoutError:
-            return RNALabel(bprna_id, str(file_path), None, 'Timeout')
+            # Error case: timeout
+            return RNALabel(bprna_id, str(file_path), None, None, 'Timeout')
         except Exception as e:
-            return RNALabel(bprna_id, str(file_path), None, f'Failed: {e}')
+            # Error case: other failure
+            return RNALabel(bprna_id, str(file_path), None, None, f'Failed: {e}')
 
 
 def load_checkpoint(output_path: Path) -> dict[str, RNALabel]:
@@ -73,6 +94,7 @@ def load_checkpoint(output_path: Path) -> dict[str, RNALabel]:
                 bprna_id=item['bprna_id'],
                 file_path=item.get('file_path', ''),
                 rna_type=item.get('rna_type'),
+                reference_name=item.get('reference_name'),
                 error=item.get('error'),
             )
         return results
@@ -97,9 +119,13 @@ def save_results(existing: dict[str, RNALabel], new_results: list[RNALabel],
 async def fetch_all(files: list[Path], max_concurrent: int, timeout: float,
                     existing: dict[str, RNALabel], output_path: Path):
     """Fetch all files with limited concurrency."""
+    import time
+
     semaphore = asyncio.Semaphore(max_concurrent)
     write_lock = asyncio.Lock()  # Prevent race conditions on file writes
     results = []
+
+    start_time = time.time()
 
     # Use a single session for connection pooling
     connector = aiohttp.TCPConnector(limit=max_concurrent, limit_per_host=max_concurrent)
@@ -110,7 +136,12 @@ async def fetch_all(files: list[Path], max_concurrent: int, timeout: float,
         write_counter = 0
         WRITE_EVERY = 20  # Write every 20 results
 
-        for coro in tqdm.as_completed(tasks, total=len(files), desc='Fetching'):
+        # Configure tqdm to update every 5 seconds with time estimates
+        pbar = tqdm.tqdm(total=len(files), desc='Fetching',
+                        mininterval=5.0,  # Update display every 5 seconds
+                        unit='files')
+
+        for coro in asyncio.as_completed(tasks):
             result = await coro
 
             # Use async lock to prevent race conditions
@@ -118,10 +149,29 @@ async def fetch_all(files: list[Path], max_concurrent: int, timeout: float,
                 results.append(result)
                 write_counter += 1
 
+                # Update progress bar
+                completed = len(results)
+                pbar.n = completed
+                elapsed = time.time() - start_time
+                avg_time_per_file = elapsed / completed
+                remaining = len(files) - completed
+                eta_seconds = avg_time_per_file * remaining
+
+                # Format ETA
+                hours = int(eta_seconds // 3600)
+                minutes = int((eta_seconds % 3600) // 60)
+                pbar.set_postfix({
+                    'avg': f'{avg_time_per_file:.2f}s/file',
+                    'ETA': f'{hours}h {minutes}m'
+                })
+                pbar.refresh()
+
                 if write_counter >= WRITE_EVERY:
                     # Run sync I/O in thread pool to not block event loop
                     await asyncio.to_thread(save_results, existing, results, output_path)
                     write_counter = 0
+
+        pbar.close()
 
     # Final save
     await asyncio.to_thread(save_results, existing, results, output_path)
@@ -130,14 +180,28 @@ async def fetch_all(files: list[Path], max_concurrent: int, timeout: float,
 
 async def main_async(args):
     """Main async function."""
-    if not args.input_dir.exists():
-        print(f'Error: Directory not found: {args.input_dir}', file=sys.stderr)
-        sys.exit(1)
+    # Load files from either directory or JSON file list
+    if args.input_json:
+        # Load file paths from JSON
+        if not args.input_json.exists():
+            print(f'Error: JSON file not found: {args.input_json}', file=sys.stderr)
+            sys.exit(1)
 
-    all_files = list(args.input_dir.glob('*.bpseq'))
-    if not all_files:
-        print(f'Error: No .bpseq files found in {args.input_dir}', file=sys.stderr)
-        sys.exit(1)
+        with open(args.input_json, 'r') as f:
+            file_paths = json.load(f)
+
+        all_files = [Path(p) for p in file_paths]
+        print(f'Loaded {len(all_files):,} file paths from {args.input_json}')
+    else:
+        # Load files from directory
+        if not args.input_dir.exists():
+            print(f'Error: Directory not found: {args.input_dir}', file=sys.stderr)
+            sys.exit(1)
+
+        all_files = list(args.input_dir.glob('*.bpseq'))
+        if not all_files:
+            print(f'Error: No .bpseq files found in {args.input_dir}', file=sys.stderr)
+            sys.exit(1)
 
     # Load existing results
     existing = load_checkpoint(args.output)
@@ -179,8 +243,16 @@ async def main_async(args):
 
 def main():
     parser = argparse.ArgumentParser(description='Async RNA label fetching')
-    parser.add_argument('--input-dir', type=Path, required=True)
-    parser.add_argument('--output', type=Path, required=True)
+
+    # Input source (mutually exclusive)
+    input_group = parser.add_mutually_exclusive_group(required=True)
+    input_group.add_argument('--input-dir', type=Path,
+                             help='Directory containing .bpseq files')
+    input_group.add_argument('--input-json', type=Path,
+                             help='JSON file with list of file paths')
+
+    parser.add_argument('--output', type=Path, required=True,
+                        help='Output JSON file for results')
     parser.add_argument('--max-concurrent', type=int, default=10,
                         help='Max concurrent requests (default: 10)')
     parser.add_argument('--timeout', type=float, default=20.0,
