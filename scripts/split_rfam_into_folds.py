@@ -48,7 +48,6 @@ def main():
         print(f'Fold {i}: {len(fold):,} files -> {output_file}')
 
     print(f'\nTotal files split: {sum(len(f) for f in folds):,}')
-    print('Ready for parallel processing!')
 
 
 if __name__ == '__main__':
