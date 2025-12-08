@@ -1,0 +1,1010 @@
+[
+  {
+    "bprna_id": "bpRNA_RFAM_11312",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11312.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AAGV020173148.1_4127-4193",
+    "error": null,
+    "request_time_seconds": 20.206305027008057
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11313",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11313.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AAGW02049846.1_3359-3288",
+    "error": null,
+    "request_time_seconds": 20.36698293685913
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11314",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11314.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AAHX01064981.1_3059-2989",
+    "error": null,
+    "request_time_seconds": 20.181846857070923
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11316",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11316.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AAIY01565342.1_752-821",
+    "error": null,
+    "request_time_seconds": 20.092193126678467
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11319",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11319.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AANN01481002.1_718-646",
+    "error": null,
+    "request_time_seconds": 20.255268096923828
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11320",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11320.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AANU01205354.1_3441-3512",
+    "error": null,
+    "request_time_seconds": 20.332972049713135
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11321",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11321.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AAPE02030647.1_4780-4852",
+    "error": null,
+    "request_time_seconds": 20.245073795318604
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11322",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11322.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AAPN01416195.1_1477-1545",
+    "error": null,
+    "request_time_seconds": 20.24409317970276
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11329",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11329.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_AF001689.1_3399-3470",
+    "error": null,
+    "request_time_seconds": 20.09837007522583
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11333",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11333.bpseq",
+    "rna_type": "snoZ17",
+    "reference_name": "RF00266_EU094073.1_3-71",
+    "error": null,
+    "request_time_seconds": 20.068451642990112
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11335",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11335.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AARH01002391.1_42426-42331",
+    "error": null,
+    "request_time_seconds": 20.198530912399292
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11337",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11337.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AC138464.19_31802-31707",
+    "error": null,
+    "request_time_seconds": 20.376033067703247
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11338",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11338.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AC138464.19_49742-49649",
+    "error": null,
+    "request_time_seconds": 20.34888482093811
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11339",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11339.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AC147499.5_74642-74736",
+    "error": null,
+    "request_time_seconds": 20.42917823791504
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11340",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11340.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AC189232.1_54652-54754",
+    "error": null,
+    "request_time_seconds": 20.23357892036438
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11341",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11341.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AF317987.1_2-93",
+    "error": null,
+    "request_time_seconds": 20.308271169662476
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11343",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11343.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AJ457082.1_314-407",
+    "error": null,
+    "request_time_seconds": 20.125898838043213
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11346",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11346.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AM479394.1_455-360",
+    "error": null,
+    "request_time_seconds": 20.328954219818115
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11347",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11347.bpseq",
+    "rna_type": "snoR64",
+    "reference_name": "RF00267_AP004591.3_13337-13431",
+    "error": null,
+    "request_time_seconds": 20.37720012664795
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11351",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11351.bpseq",
+    "rna_type": "snoZ7",
+    "reference_name": "RF00268_AJ010674.1_1-79",
+    "error": null,
+    "request_time_seconds": 20.261120080947876
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11355",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11355.bpseq",
+    "rna_type": "SNORD61",
+    "reference_name": "RF00270_AACT01002366.1_14510-14440",
+    "error": null,
+    "request_time_seconds": 20.285255908966064
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11356",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11356.bpseq",
+    "rna_type": "SNORD61",
+    "reference_name": "RF00270_AADN03004067.1_192021-191957",
+    "error": null,
+    "request_time_seconds": 20.37439489364624
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11357",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11357.bpseq",
+    "rna_type": "SNORD61",
+    "reference_name": "RF00270_AAEX03026954.1_222007-221936",
+    "error": null,
+    "request_time_seconds": 20.345352172851562
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11358",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11358.bpseq",
+    "rna_type": "SNORD61",
+    "reference_name": "RF00270_AAFC03028609.1_18530-18459",
+    "error": null,
+    "request_time_seconds": 20.200013160705566
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_11359",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_11359.bpseq",
+    "rna_type": "SNORD61",
+    "reference_name": "RF00270_AAFR03051555.1_28725-28801",
+    "error": null,
+    "request_time_seconds": 20.365715980529785
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13894",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13894.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AAGV020286123.1_3444-3308",
+    "error": null,
+    "request_time_seconds": 20.190547227859497
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13895",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13895.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AAHX01045690.1_49714-49848",
+    "error": null,
+    "request_time_seconds": 20.277602910995483
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13896",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13896.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AAIY01556911.1_2337-2197",
+    "error": null,
+    "request_time_seconds": 20.275113821029663
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13897",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13897.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AALT01368588.1_10575-10440",
+    "error": null,
+    "request_time_seconds": 20.25218892097473
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13898",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13898.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AANG01021210.1_2924-3059",
+    "error": null,
+    "request_time_seconds": 20.331944942474365
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13899",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13899.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AAPE02038631.1_120933-121068",
+    "error": null,
+    "request_time_seconds": 20.24776291847229
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13900",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13900.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AAQQ01789110.1_2055-1919",
+    "error": null,
+    "request_time_seconds": 20.17090892791748
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13901",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13901.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AAQR03004710.1_116908-117043",
+    "error": null,
+    "request_time_seconds": 20.070451021194458
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13903",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13903.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AAYZ01244227.1_6985-6849",
+    "error": null,
+    "request_time_seconds": 20.27324390411377
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13904",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13904.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_ABDC01240840.1_7748-7883",
+    "error": null,
+    "request_time_seconds": 20.170526266098022
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13906",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13906.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AJ609450.1_1-137",
+    "error": null,
+    "request_time_seconds": 20.35808801651001
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13908",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13908.bpseq",
+    "rna_type": "SNORA58",
+    "reference_name": "RF00418_AL590431.11_107122-107257",
+    "error": null,
+    "request_time_seconds": 20.341676950454712
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13910",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13910.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AADN03004446.1_121593-121461",
+    "error": null,
+    "request_time_seconds": 20.42623996734619
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13911",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13911.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAEX03003503.1_61797-61663",
+    "error": null,
+    "request_time_seconds": 20.18756604194641
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13912",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13912.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAFC03097110.1_4392-4258",
+    "error": null,
+    "request_time_seconds": 20.177154064178467
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13913",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13913.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAFR03066205.1_4239-4369",
+    "error": null,
+    "request_time_seconds": 20.02816414833069
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13914",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13914.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAGV020943529.1_1465-1332",
+    "error": null,
+    "request_time_seconds": 20.37857484817505
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13915",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13915.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAIY01543731.1_3884-4020",
+    "error": null,
+    "request_time_seconds": 20.270933151245117
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13916",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13916.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAKN02056355.1_137040-136905",
+    "error": null,
+    "request_time_seconds": 20.28893494606018
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13917",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13917.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AALT01232683.1_1888-1759",
+    "error": null,
+    "request_time_seconds": 20.379491090774536
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13918",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13918.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AANG01640232.1_288-421",
+    "error": null,
+    "request_time_seconds": 20.3432719707489
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13919",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13919.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AANN01790302.1_1491-1617",
+    "error": null,
+    "request_time_seconds": 20.203543186187744
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13920",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13920.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAQQ01384200.1_1380-1248",
+    "error": null,
+    "request_time_seconds": 20.362544298171997
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13921",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13921.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAQR03181100.1_17910-17779",
+    "error": null,
+    "request_time_seconds": 20.26456093788147
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_13922",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_13922.bpseq",
+    "rna_type": "SNORA52",
+    "reference_name": "RF00419_AAWR02047868.1_1151-1285",
+    "error": null,
+    "request_time_seconds": 20.08615803718567
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_1650",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_1650.bpseq",
+    "rna_type": "tRNA",
+    "reference_name": "RF00005_X01738.1_122-190",
+    "error": null,
+    "request_time_seconds": 20.297171115875244
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16501",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16501.bpseq",
+    "rna_type": "snoMe28S-Cm788",
+    "reference_name": "RF00539_AAPQ01006530.1_556557-556485",
+    "error": null,
+    "request_time_seconds": 20.33260416984558
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16502",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16502.bpseq",
+    "rna_type": "snoMe28S-Cm788",
+    "reference_name": "RF00539_AAQB01006228.1_174760-174688",
+    "error": null,
+    "request_time_seconds": 20.24705410003662
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16503",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16503.bpseq",
+    "rna_type": "snoMe28S-Cm788",
+    "reference_name": "RF00539_AC010057.7_173600-173526",
+    "error": null,
+    "request_time_seconds": 20.224382877349854
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16506",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16506.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AAEU02000718.1_22448-22294",
+    "error": null,
+    "request_time_seconds": 20.153287172317505
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16507",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16507.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AAFS01000909.1_11343-11498",
+    "error": null,
+    "request_time_seconds": 20.279399871826172
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16509",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16509.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AAIZ01005601.1_28268-28424",
+    "error": null,
+    "request_time_seconds": 20.196245908737183
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_1651",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_1651.bpseq",
+    "rna_type": "tRNA",
+    "reference_name": "RF00005_X02167.1_179-251",
+    "error": null,
+    "request_time_seconds": 20.377461910247803
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16510",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16510.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AAKO01002760.1_34912-34758",
+    "error": null,
+    "request_time_seconds": 20.34326696395874
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16511",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16511.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AAPP01018319.1_47168-47014",
+    "error": null,
+    "request_time_seconds": 20.42542004585266
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16513",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16513.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AAPT01018955.1_16423-16577",
+    "error": null,
+    "request_time_seconds": 20.216708183288574
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16514",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16514.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AAPU01009646.1_39739-39893",
+    "error": null,
+    "request_time_seconds": 20.307588815689087
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16515",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16515.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AAQB01006339.1_42170-42334",
+    "error": null,
+    "request_time_seconds": 20.125046968460083
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16519",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16519.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AF426408.1_1418-1573",
+    "error": null,
+    "request_time_seconds": 20.344928741455078
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16520",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16520.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AF426408.1_1766-1920",
+    "error": null,
+    "request_time_seconds": 20.380495071411133
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16521",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16521.bpseq",
+    "rna_type": "snopsi18S-1854",
+    "reference_name": "RF00540_AF426408.1_186-341",
+    "error": null,
+    "request_time_seconds": 20.262116193771362
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16522",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16522.bpseq",
+    "rna_type": "snopsi28S-2876",
+    "reference_name": "RF00541_AAFS01000909.1_13514-13657",
+    "error": null,
+    "request_time_seconds": 20.279093027114868
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16523",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16523.bpseq",
+    "rna_type": "snopsi28S-2876",
+    "reference_name": "RF00541_AAPP01018319.1_46616-46473",
+    "error": null,
+    "request_time_seconds": 20.373276948928833
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16524",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16524.bpseq",
+    "rna_type": "snopsi28S-2876",
+    "reference_name": "RF00541_AAPT01018955.1_17011-17152",
+    "error": null,
+    "request_time_seconds": 20.34655523300171
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16525",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16525.bpseq",
+    "rna_type": "snopsi28S-2876",
+    "reference_name": "RF00541_AAPU01009646.1_40294-40435",
+    "error": null,
+    "request_time_seconds": 20.199285984039307
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16526",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16526.bpseq",
+    "rna_type": "snopsi28S-2876",
+    "reference_name": "RF00541_AAQB01006339.1_43171-43326",
+    "error": null,
+    "request_time_seconds": 20.264627933502197
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16527",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16527.bpseq",
+    "rna_type": "snopsi28S-2876",
+    "reference_name": "RF00541_AASV01043460.1_657-805",
+    "error": null,
+    "request_time_seconds": 20.17052984237671
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_1653",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_1653.bpseq",
+    "rna_type": "tRNA",
+    "reference_name": "RF00005_X02167.1_345-416",
+    "error": null,
+    "request_time_seconds": 20.29109215736389
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16530",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16530.bpseq",
+    "rna_type": "snopsi28S-1192",
+    "reference_name": "RF00542_AAEU02000718.1_21003-20866",
+    "error": null,
+    "request_time_seconds": 20.274312019348145
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_16531",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_16531.bpseq",
+    "rna_type": "snopsi28S-1192",
+    "reference_name": "RF00542_AAFS01000909.1_14435-14576",
+    "error": null,
+    "request_time_seconds": 15.970776081085205
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18841",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18841.bpseq",
+    "rna_type": "MIR171_1",
+    "reference_name": "RF00643_AY871043.1_1-86",
+    "error": null,
+    "request_time_seconds": 20.33434796333313
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18842",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18842.bpseq",
+    "rna_type": "MIR171_1",
+    "reference_name": "RF00643_BT018211.1_119-253",
+    "error": null,
+    "request_time_seconds": 20.22781276702881
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18844",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18844.bpseq",
+    "rna_type": "MIR171_1",
+    "reference_name": "RF00643_FM163807.1_196-297",
+    "error": null,
+    "request_time_seconds": 20.176339864730835
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18845",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18845.bpseq",
+    "rna_type": "MIR171_1",
+    "reference_name": "RF00643_FN595765.1_555787-555687",
+    "error": null,
+    "request_time_seconds": 20.072381019592285
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18847",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18847.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AAFR03052006.1_45216-45298",
+    "error": null,
+    "request_time_seconds": 20.273123025894165
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18848",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18848.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AAGV020400005.1_5570-5488",
+    "error": null,
+    "request_time_seconds": 20.16860294342041
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18849",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18849.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AAHX01097732.1_7669-7751",
+    "error": null,
+    "request_time_seconds": 20.356297969818115
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_1885",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_1885.bpseq",
+    "rna_type": "tRNA",
+    "reference_name": "RF00005_X52392.1_6430-6362",
+    "error": null,
+    "request_time_seconds": 20.347742319107056
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18851",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18851.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AANH01005378.1_81241-81159",
+    "error": null,
+    "request_time_seconds": 20.40672492980957
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18852",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18852.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AANH01005391.1_487407-487325",
+    "error": null,
+    "request_time_seconds": 20.23848867416382
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18854",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18854.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AANN01357153.1_1239-1159",
+    "error": null,
+    "request_time_seconds": 20.143300771713257
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18855",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18855.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AAPN01152921.1_1247-1165",
+    "error": null,
+    "request_time_seconds": 20.330864906311035
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18856",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18856.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AAPN01322484.1_470-549",
+    "error": null,
+    "request_time_seconds": 20.378026008605957
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18857",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18857.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AAPY01721327.1_686-605",
+    "error": null,
+    "request_time_seconds": 20.25909399986267
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18858",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18858.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AAVX01257813.1_610-525",
+    "error": null,
+    "request_time_seconds": 20.28368091583252
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_1886",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_1886.bpseq",
+    "rna_type": "tRNA",
+    "reference_name": "RF00005_X52392.1_6506-6434",
+    "error": null,
+    "request_time_seconds": 20.392546892166138
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18860",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18860.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AAWZ02024153.1_17341-17260",
+    "error": null,
+    "request_time_seconds": 20.34476375579834
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18863",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18863.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_AY866326.1_455-536",
+    "error": null,
+    "request_time_seconds": 20.200364112854004
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18865",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18865.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_BAAE01159437.1_1557-1475",
+    "error": null,
+    "request_time_seconds": 20.38295292854309
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18866",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18866.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_BAAF04052671.1_6292-6371",
+    "error": null,
+    "request_time_seconds": 20.165466785430908
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18867",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18867.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_BAAF04071179.1_1519-1598",
+    "error": null,
+    "request_time_seconds": 20.27634572982788
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18868",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18868.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_BAAF04073622.1_5313-5395",
+    "error": null,
+    "request_time_seconds": 20.27569890022278
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_18869",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_18869.bpseq",
+    "rna_type": "mir-27",
+    "reference_name": "RF00644_BAAF04082680.1_4929-4846",
+    "error": null,
+    "request_time_seconds": 20.334537982940674
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_1887",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_1887.bpseq",
+    "rna_type": "tRNA",
+    "reference_name": "RF00005_X52392.1_6573-6508",
+    "error": null,
+    "request_time_seconds": 20.248249053955078
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20961",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20961.bpseq",
+    "rna_type": "mir-328",
+    "reference_name": "RF00772_AAQR03153104.1_6331-6414",
+    "error": null,
+    "request_time_seconds": 20.224742889404297
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20962",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20962.bpseq",
+    "rna_type": "mir-328",
+    "reference_name": "RF00772_AAYZ01109814.1_701-618",
+    "error": null,
+    "request_time_seconds": 20.128026008605957
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20964",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20964.bpseq",
+    "rna_type": "mir-328",
+    "reference_name": "RF00772_AC040160.4_136429-136512",
+    "error": null,
+    "request_time_seconds": 20.275943994522095
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20967",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20967.bpseq",
+    "rna_type": "mir-298",
+    "reference_name": "RF00773_AADC01142343.1_122563-122476",
+    "error": null,
+    "request_time_seconds": 20.188344955444336
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20968",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20968.bpseq",
+    "rna_type": "mir-298",
+    "reference_name": "RF00773_AAQR03050726.1_73824-73737",
+    "error": null,
+    "request_time_seconds": 20.37602210044861
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20969",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20969.bpseq",
+    "rna_type": "mir-298",
+    "reference_name": "RF00773_ABDC01114716.1_6703-6619",
+    "error": null,
+    "request_time_seconds": 20.340953826904297
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_2097",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_2097.bpseq",
+    "rna_type": "Vault",
+    "reference_name": "RF00006_BX663520.9_47050-47141",
+    "error": null,
+    "request_time_seconds": 20.425031900405884
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20970",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20970.bpseq",
+    "rna_type": "mir-298",
+    "reference_name": "RF00773_ACFV01097969.1_11783-11870",
+    "error": null,
+    "request_time_seconds": 20.213508129119873
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20971",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20971.bpseq",
+    "rna_type": "mir-298",
+    "reference_name": "RF00773_AL929537.17_90228-90312",
+    "error": null,
+    "request_time_seconds": 20.195796966552734
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20972",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20972.bpseq",
+    "rna_type": "mir-360",
+    "reference_name": "RF00774_AAGD02000028.1_247908-247796",
+    "error": null,
+    "request_time_seconds": 20.02935004234314
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20973",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20973.bpseq",
+    "rna_type": "mir-360",
+    "reference_name": "RF00774_ABEG02001210.1_41217-41109",
+    "error": null,
+    "request_time_seconds": 20.324207067489624
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20974",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20974.bpseq",
+    "rna_type": "mir-360",
+    "reference_name": "RF00774_AEHI01030914.1_111-1",
+    "error": null,
+    "request_time_seconds": 20.35735511779785
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20975",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20975.bpseq",
+    "rna_type": "mir-360",
+    "reference_name": "RF00774_CAAC02000521.1_3689146-3689258",
+    "error": null,
+    "request_time_seconds": 20.27209973335266
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20976",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20976.bpseq",
+    "rna_type": "mir-360",
+    "reference_name": "RF00774_FO080886.1_6709-6821",
+    "error": null,
+    "request_time_seconds": 20.261965036392212
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20977",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20977.bpseq",
+    "rna_type": "mir-432",
+    "reference_name": "RF00775_AAFC03050876.1_56533-56626",
+    "error": null,
+    "request_time_seconds": 20.37323808670044
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20978",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20978.bpseq",
+    "rna_type": "mir-432",
+    "reference_name": "RF00775_AAIY01403620.1_1283-1377",
+    "error": null,
+    "request_time_seconds": 20.332427978515625
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_2098",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_2098.bpseq",
+    "rna_type": "Vault",
+    "reference_name": "RF00006_CAAA01055262.1_2914-2772",
+    "error": null,
+    "request_time_seconds": 20.366065979003906
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20981",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20981.bpseq",
+    "rna_type": "mir-432",
+    "reference_name": "RF00775_CAAA01088145.1_20377-20284",
+    "error": null,
+    "request_time_seconds": 20.18565011024475
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20982",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20982.bpseq",
+    "rna_type": "mir-432",
+    "reference_name": "RF00775_CAAA01088145.1_20764-20680",
+    "error": null,
+    "request_time_seconds": 20.165831804275513
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20983",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20983.bpseq",
+    "rna_type": "mir-540",
+    "reference_name": "RF00776_AAQQ01350179.1_20-102",
+    "error": null,
+    "request_time_seconds": 20.27642011642456
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20984",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20984.bpseq",
+    "rna_type": "mir-540",
+    "reference_name": "RF00776_AC152063.5_103464-103381",
+    "error": null,
+    "request_time_seconds": 20.278339862823486
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20985",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20985.bpseq",
+    "rna_type": "mir-541",
+    "reference_name": "RF00777_AACZ03097072.1_25810-25899",
+    "error": null,
+    "request_time_seconds": 20.330080032348633
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20986",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20986.bpseq",
+    "rna_type": "mir-541",
+    "reference_name": "RF00777_AAEX03006005.1_168837-168928",
+    "error": null,
+    "request_time_seconds": 20.25220012664795
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20987",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20987.bpseq",
+    "rna_type": "mir-541",
+    "reference_name": "RF00777_AAGU03025975.1_15199-15110",
+    "error": null,
+    "request_time_seconds": 20.245537042617798
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20989",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20989.bpseq",
+    "rna_type": "mir-541",
+    "reference_name": "RF00777_AANG01133006.1_4131-4221",
+    "error": null,
+    "request_time_seconds": 20.176050901412964
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_2099",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_2099.bpseq",
+    "rna_type": "Vault",
+    "reference_name": "RF00006_CAAB02006781.1_1623-1725",
+    "error": null,
+    "request_time_seconds": 20.06768012046814
+  },
+  {
+    "bprna_id": "bpRNA_RFAM_20990",
+    "file_path": "data/unzipped/bpRNA_1m_90_bpseqFiles/bpRNA_RFAM_20990.bpseq",
+    "rna_type": "mir-541",
+    "reference_name": "RF00777_AANN01107744.1_773-685",
+    "error": null,
+    "request_time_seconds": 20.268988847732544
+  }
+]
