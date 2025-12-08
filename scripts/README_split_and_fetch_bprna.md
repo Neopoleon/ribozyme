@@ -35,7 +35,7 @@ python scripts/fetch_rna_labels_async.py \
     --input-json data/splits/fold1.json \
     --output results/fold1_labels.json \
     --max-concurrent 5 \
-    --timeout 20.0
+    --timeout 40.0
 ```
 
 ### Computer 2 - Process Fold 2
@@ -45,7 +45,7 @@ python scripts/fetch_rna_labels_async.py \
     --input-json data/splits/fold2.json \
     --output results/fold2_labels.json \
     --max-concurrent 5 \
-    --timeout 20.0
+    --timeout 40.0
 ```
 
 ### Computer 3 - Process Fold 3
@@ -55,7 +55,7 @@ python scripts/fetch_rna_labels_async.py \
     --input-json data/splits/fold3.json \
     --output results/fold3_labels.json \
     --max-concurrent 5 \
-    --timeout 20.0
+    --timeout 40.0
 ```
 
 ## Output Format
@@ -98,7 +98,7 @@ python scripts/fetch_rna_labels_async.py \
     --input-json data/splits/fold1_test.json \
     --output results/fold1_test_labels.json \
     --max-concurrent 5 \
-    --timeout 20.0
+    --timeout 40.0
 ```
 
 ## Merging Results (After All Folds Complete)
