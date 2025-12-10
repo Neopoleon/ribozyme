@@ -1,4 +1,4 @@
-"""Quick test of the training pipeline (CPU-friendly)"""
+"""Quick test of the training pipeline"""
 
 import os
 # Fix OpenMP issue on Mac
@@ -12,12 +12,14 @@ from src.data import RNADataset, LabelEncoder
 from src.models import get_model
 
 print("="*80)
-print("Quick Training Pipeline Test (CPU-Friendly)")
+print("Quick Training Pipeline Test")
 print("="*80)
 
 # Set device
-device = torch.device('cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"\n1. Using device: {device}")
+if torch.cuda.is_available():
+    print(f"   GPU: {torch.cuda.get_device_name(0)}")
 
 # Initialize label encoder
 label_encoder = LabelEncoder()

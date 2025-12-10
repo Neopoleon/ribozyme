@@ -1,0 +1,13 @@
+{
+  "model": "gcn",
+  "hidden_dim": 128,
+  "num_layers": 3,
+  "dropout": 0.3,
+  "pooling": "mean",
+  "epochs": 100,
+  "batch_size": 128,
+  "lr": 0.001,
+  "weight_decay": 1e-05,
+  "use_class_weights": true,
+  "output_dir": "results/runs"
+}
