@@ -1,0 +1,17 @@
+
+Results Summary
+===============
+
+Overall Metrics:
+  - Accuracy: 0.9133
+  - F1 Score (Macro): 0.8794
+  - F1 Score (Weighted): 0.9128
+
+Visualizations saved to: results/runs/gin_20251210_000555/visualizations
+  - training_history.png
+  - confusion_matrix.png
+  - confusion_matrix_normalized.png
+  - per_class_metrics.png
+  - confidence_analysis.png
+
+For detailed per-class metrics, see: results/runs/gin_20251210_000555/test_results.txt

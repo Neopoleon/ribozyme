@@ -1,0 +1,39 @@
+Test Results
+============
+
+Loss: 1.2560
+Accuracy: 0.7211
+F1 Score: 0.7067
+
+Classification Report:
+====================
+
+                                precision    recall  f1-score   support
+
+                      Cis-reg;       0.60      0.32      0.41       219
+                Cis-reg; IRES;       0.45      0.59      0.51        17
+  Cis-reg; frameshift_element;       0.56      0.93      0.70        15
+              Cis-reg; leader;       0.43      0.64      0.51        50
+          Cis-reg; riboswitch;       0.89      0.76      0.82       302
+     Cis-reg; thermoregulator;       0.30      1.00      0.46         6
+                         Gene;       0.48      0.54      0.51        93
+                 Gene; CRISPR;       0.34      1.00      0.51        19
+              Gene; antisense;       0.76      0.93      0.83        70
+              Gene; antitoxin;       0.36      0.92      0.52        13
+                 Gene; lncRNA;       0.20      1.00      0.33         2
+                  Gene; miRNA;       0.80      0.98      0.88       364
+                   Gene; rRNA;       0.79      0.97      0.87        72
+               Gene; ribozyme;       0.95      0.89      0.92        63
+                   Gene; sRNA;       0.57      0.23      0.33       266
+                  Gene; snRNA;       0.44      1.00      0.62         4
+          Gene; snRNA; snoRNA;       0.00      0.00      0.00         1
+  Gene; snRNA; snoRNA; CD-box;       0.94      0.83      0.88       234
+Gene; snRNA; snoRNA; HACA-box;       0.79      0.75      0.77       185
+  Gene; snRNA; snoRNA; scaRNA;       0.38      0.85      0.52        26
+        Gene; snRNA; splicing;       0.50      0.87      0.63        61
+                   Gene; tRNA;       0.81      1.00      0.90        47
+                       Intron;       0.90      0.96      0.93        98
+
+                      accuracy                           0.72      2227
+                     macro avg       0.58      0.78      0.62      2227
+                  weighted avg       0.74      0.72      0.71      2227
