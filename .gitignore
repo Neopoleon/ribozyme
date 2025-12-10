@@ -1,4 +1,11 @@
-data/
+# Ignore large data files but keep splits
+data/unzipped/
+data/processed/
+
+# Keep these important files
+!data/splits/
+!data/rfam/
+
 __pycache__/
 *.egg-info/
 
