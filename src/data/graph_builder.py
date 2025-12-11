@@ -157,15 +157,16 @@ def rna_to_graph(
         edge_list.append([i + 1, i])
         edge_attrs.append(encode_edge_type_onehot(0))  # 5D one-hot
 
-    # 2. Base-pair edges from dot-bracket notation
-    base_pairs = parse_dot_bracket(dot_bracket)
-    for i, j, edge_type in base_pairs:
-        # Undirected edges: add both directions
-        edge_list.append([i, j])
-        edge_attrs.append(encode_edge_type_onehot(edge_type))  # 5D one-hot
+    # 2. Base-pair edges from dot-bracket notation (skip if only_backbone=True)
+    if feature_config is None or not feature_config.only_backbone:
+        base_pairs = parse_dot_bracket(dot_bracket)
+        for i, j, edge_type in base_pairs:
+            # Undirected edges: add both directions
+            edge_list.append([i, j])
+            edge_attrs.append(encode_edge_type_onehot(edge_type))  # 5D one-hot
 
-        edge_list.append([j, i])
-        edge_attrs.append(encode_edge_type_onehot(edge_type))  # 5D one-hot
+            edge_list.append([j, i])
+            edge_attrs.append(encode_edge_type_onehot(edge_type))  # 5D one-hot
 
     # Convert to tensors
     if edge_list:

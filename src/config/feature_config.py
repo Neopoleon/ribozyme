@@ -20,6 +20,9 @@ class FeatureConfig:
     - Pseudoknot bracket []
     - Pseudoknot bracket {}
     - Pseudoknot bracket <>
+
+    Graph Structure (configurable):
+    - only_backbone: If True, only include backbone edges (sequence-only baseline)
     """
 
     # Node features
@@ -27,6 +30,9 @@ class FeatureConfig:
     use_structure_annotation: bool = True  # Motif annotation (E/S/H/I/M/B/X)
     use_pseudoknot: bool = True
     use_position_encoding: bool = True
+
+    # Edge/graph structure
+    only_backbone: bool = False  # If True, only add backbone edges (no structure edges)
 
     def get_node_feature_dim(self) -> int:
         """Calculate total node feature dimension based on enabled features"""

@@ -224,6 +224,7 @@ def main(cfg: DictConfig) -> None:
         use_structure_annotation=cfg.features.use_structure_annotation,
         use_pseudoknot=cfg.features.use_pseudoknot,
         use_position_encoding=cfg.features.use_position_encoding,
+        only_backbone=cfg.features.get('only_backbone', False),  # Backward compatible default
     )
     print(f"\n{feature_config}")
     num_node_features = feature_config.get_node_feature_dim()
