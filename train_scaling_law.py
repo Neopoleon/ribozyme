@@ -210,7 +210,8 @@ def main(cfg: DictConfig) -> None:
     # Setup output directory
     run_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     fraction_str = f"{cfg.data_fraction:.2f}".replace(".", "p")
-    run_name = f"scaling_gin_frac{fraction_str}_seed{cfg.seed}_{run_timestamp}"
+    model_tag = getattr(cfg.model, "architecture", "model")
+    run_name = f"scaling_{model_tag}_frac{fraction_str}_seed{cfg.seed}_{run_timestamp}"
     project_root = Path(get_original_cwd())
     base_output_dir = project_root / cfg.output_dir
     output_dir = base_output_dir / run_name
