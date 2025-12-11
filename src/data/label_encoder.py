@@ -2,7 +2,6 @@
 
 import json
 
-
 class LabelEncoder:
     """
     Encode RNA meta-type strings to integer labels for classification.
