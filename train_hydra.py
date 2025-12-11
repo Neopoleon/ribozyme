@@ -18,6 +18,10 @@ from hydra.utils import get_original_cwd, to_absolute_path
 from omegaconf import DictConfig, OmegaConf
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from torch_geometric.loader import DataLoader
+try:
+    import wandb  # type: ignore
+except Exception:  # noqa: BLE001
+    wandb = None
 
 from src.config import Config, FeatureConfig
 from src.data import LabelEncoder, RNADataset
@@ -194,6 +198,25 @@ def main(cfg: DictConfig) -> None:
             f.write(OmegaConf.to_yaml(cfg))
     else:
         print("Test mode enabled: outputs will not be saved to disk.")
+    # Optional Weights & Biases logging
+    wandb_enabled = os.getenv("HYDRA_WANDB", "0").lower() in {"1", "true", "yes"}
+    wandb_run = None
+    if wandb_enabled:
+        if wandb is None:
+            print("HYDRA_WANDB set but wandb is not installed; skipping wandb logging.")
+        else:
+            try:
+                wandb_config = OmegaConf.to_container(cfg, resolve=False)
+                wandb_run = wandb.init(
+                    project=os.getenv("WANDB_PROJECT", "ribozyme"),
+                    entity=os.getenv("WANDB_ENTITY"),
+                    mode=os.getenv("WANDB_MODE", "online"),
+                    name=run_name,
+                    dir=str(output_dir if save_outputs else project_root / "outputs"),
+                    config=wandb_config,
+                )
+            except Exception as exc:  # noqa: BLE001
+                print(f"HYDRA_WANDB set but wandb init failed: {exc}. Skipping wandb logging.")
 
     # Convert feature config from DictConfig
     feature_config = FeatureConfig(
@@ -343,6 +366,21 @@ def main(cfg: DictConfig) -> None:
         history['val_acc'].append(val_acc)
         history['val_f1'].append(val_f1)
 
+        if wandb_run is not None:
+            wandb.log(
+                {
+                    "epoch": epoch,
+                    "train/loss": train_loss,
+                    "train/acc": train_acc,
+                    "train/f1": train_f1,
+                    "val/loss": val_loss,
+                    "val/acc": val_acc,
+                    "val/f1": val_f1,
+                    "lr": scheduler.optimizer.param_groups[0]["lr"],
+                },
+                step=epoch,
+            )
+
         print(f"Epoch {epoch:3d}/{cfg.training.epochs} | "
               f"Train Loss: {train_loss:.4f} Acc: {train_acc:.4f} F1: {train_f1:.4f} | "
               f"Val Loss: {val_loss:.4f} Acc: {val_acc:.4f} F1: {val_f1:.4f}")
@@ -391,6 +429,15 @@ def main(cfg: DictConfig) -> None:
     print(f"  Loss: {test_loss:.4f}")
     print(f"  Accuracy: {test_acc:.4f}")
     print(f"  F1 Score: {test_f1:.4f}")
+
+    if wandb_run is not None:
+        wandb.log(
+            {
+                "test/loss": test_loss,
+                "test/acc": test_acc,
+                "test/f1": test_f1,
+            }
+        )
 
     # Generate detailed classification report
     print("\nClassification Report:")
@@ -469,10 +516,48 @@ For detailed per-class metrics, see: {output_dir}/test_results.txt
         with open(vis_dir / 'summary.txt', 'w') as f:
             f.write(summary)
         print(summary)
+        if wandb_run is not None:
+            artifact = wandb.Artifact(
+                name=f"{run_name}-artifacts",
+                type="model",
+                metadata={
+                    "run_name": run_name,
+                    "config": OmegaConf.to_container(cfg, resolve=False),
+                },
+            )
+            for fname in [
+                "config.json",
+                "config.yaml",
+                "history.json",
+                "test_results.json",
+                "test_results.txt",
+                "test_predictions.npy",
+                "test_labels.npy",
+                "test_probabilities.npy",
+                "confusion_matrix.npy",
+                "best_model.pt",
+            ]:
+                fpath = output_dir / fname
+                if fpath.exists():
+                    artifact.add_file(str(fpath))
+            for vis_fname in [
+                "training_history.png",
+                "confusion_matrix.png",
+                "confusion_matrix_normalized.png",
+                "per_class_metrics.png",
+                "confidence_analysis.png",
+                "summary.txt",
+            ]:
+                fpath = vis_dir / vis_fname
+                if fpath.exists():
+                    artifact.add_file(str(fpath), name=f"visualizations/{vis_fname}")
+            wandb_run.log_artifact(artifact)
     else:
         print("Test mode: skipping artifact saving and visualizations.")
 
     print(f"\n✓ Training complete! Results saved to: {output_dir}" if save_outputs else "\n✓ Training complete (test mode, no artifacts saved).")
+    if wandb_run is not None:
+        wandb_run.finish()
 
 
 # Register config with Hydra
