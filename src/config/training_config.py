@@ -87,6 +87,7 @@ class Config:
     training: TrainingConfig | None = None
     data: DataConfig | None = None
     output_dir: str = 'results/runs'
+    test: bool = False
     seed: int = 42
 
     def __post_init__(self) -> None:

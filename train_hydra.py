@@ -1,6 +1,9 @@
 """Training script for RNA GNN classifier with Hydra configuration"""
 
+import copy
+import json
 import os
+from datetime import datetime
 # Fix OpenMP issue on Mac
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
@@ -11,6 +14,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from hydra.core.config_store import ConfigStore
+from hydra.utils import get_original_cwd, to_absolute_path
 from omegaconf import DictConfig, OmegaConf
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from torch_geometric.loader import DataLoader
@@ -18,6 +22,12 @@ from torch_geometric.loader import DataLoader
 from src.config import Config, FeatureConfig
 from src.data import LabelEncoder, RNADataset
 from src.models import get_model
+from visualize_results import (
+    plot_confusion_matrix,
+    plot_per_class_metrics,
+    plot_top_predictions,
+    plot_training_history,
+)
 
 
 def set_seed(seed: int) -> None:
@@ -140,9 +150,24 @@ def save_checkpoint(
     }, save_path)
 
 
-@hydra.main(version_base=None, config_path="conf", config_name="config")
+@hydra.main(version_base=None, config_path="conf", config_name="config_0")
 def main(cfg: DictConfig) -> None:
     """Main training function with Hydra configuration"""
+
+    run_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    feature_tag = (
+        f"{cfg.features.use_nucleotide}_"
+        f"{cfg.features.use_structure_annotation}_"
+        f"{cfg.features.use_pseudoknot}_"
+        f"{cfg.features.use_position_encoding}"
+    )
+    run_name = f"{cfg.model.architecture}_{feature_tag}_{run_timestamp}"
+    project_root = Path(get_original_cwd())
+    base_output_dir = project_root / cfg.output_dir
+    output_dir = base_output_dir / run_name
+    save_outputs = not cfg.test
+    if save_outputs:
+        output_dir.mkdir(parents=True, exist_ok=True)
 
     # Convert DictConfig to structured config
     print("="*80)
@@ -158,9 +183,17 @@ def main(cfg: DictConfig) -> None:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"\nUsing device: {device}")
 
-    # Create output directory (Hydra handles this automatically)
-    output_dir = Path.cwd()  # Hydra changes working directory
-    print(f"Output directory: {output_dir}")
+    # Output directory mirrors train.py style
+    if save_outputs:
+        print(f"Output directory: {output_dir}")
+        # Save config snapshot (json + yaml). Avoid resolving interpolations that require
+        # custom resolvers (e.g., ${datetime:...}) by keeping resolve=False.
+        with open(output_dir / "config.json", "w") as f:
+            json.dump(OmegaConf.to_container(cfg, resolve=False), f, indent=2)
+        with open(output_dir / "config.yaml", "w") as f:
+            f.write(OmegaConf.to_yaml(cfg))
+    else:
+        print("Test mode enabled: outputs will not be saved to disk.")
 
     # Convert feature config from DictConfig
     feature_config = FeatureConfig(
@@ -181,28 +214,28 @@ def main(cfg: DictConfig) -> None:
     # Load datasets
     print("\nLoading datasets...")
     train_dataset = RNADataset(
-        root='data/processed/train',
-        fold_labels_path=cfg.data.train_path,
-        rfam_types_path=cfg.data.rfam_types_path,
-        st_files_dir=cfg.data.st_files_dir,
+        root=to_absolute_path('data/processed/train'),
+        fold_labels_path=to_absolute_path(cfg.data.train_path),
+        rfam_types_path=to_absolute_path(cfg.data.rfam_types_path),
+        st_files_dir=to_absolute_path(cfg.data.st_files_dir),
         label_encoder=label_encoder,
         feature_config=feature_config,
     )
 
     val_dataset = RNADataset(
-        root='data/processed/val',
-        fold_labels_path=cfg.data.val_path,
-        rfam_types_path=cfg.data.rfam_types_path,
-        st_files_dir=cfg.data.st_files_dir,
+        root=to_absolute_path('data/processed/val'),
+        fold_labels_path=to_absolute_path(cfg.data.val_path),
+        rfam_types_path=to_absolute_path(cfg.data.rfam_types_path),
+        st_files_dir=to_absolute_path(cfg.data.st_files_dir),
         label_encoder=label_encoder,
         feature_config=feature_config,
     )
 
     test_dataset = RNADataset(
-        root='data/processed/test',
-        fold_labels_path=cfg.data.test_path,
-        rfam_types_path=cfg.data.rfam_types_path,
-        st_files_dir=cfg.data.st_files_dir,
+        root=to_absolute_path('data/processed/test'),
+        fold_labels_path=to_absolute_path(cfg.data.test_path),
+        rfam_types_path=to_absolute_path(cfg.data.rfam_types_path),
+        st_files_dir=to_absolute_path(cfg.data.st_files_dir),
         label_encoder=label_encoder,
         feature_config=feature_config,
     )
@@ -285,6 +318,8 @@ def main(cfg: DictConfig) -> None:
         'val_loss': [], 'val_acc': [], 'val_f1': []
     }
     epochs_without_improvement = 0
+    best_state = None
+    best_metrics = None
 
     for epoch in range(1, cfg.training.epochs + 1):
         # Train
@@ -316,12 +351,16 @@ def main(cfg: DictConfig) -> None:
         if val_f1 > best_val_f1:
             best_val_f1 = val_f1
             epochs_without_improvement = 0
-            save_checkpoint(
-                model, optimizer, epoch,
-                {'val_f1': val_f1, 'val_acc': val_acc, 'val_loss': val_loss},
-                output_dir / 'best_model.pt'
-            )
-            print(f"  → New best model saved (Val F1: {val_f1:.4f})")
+            best_metrics = {'val_f1': val_f1, 'val_acc': val_acc, 'val_loss': val_loss}
+            if save_outputs:
+                save_checkpoint(
+                    model, optimizer, epoch,
+                    best_metrics,
+                    output_dir / 'best_model.pt'
+                )
+            else:
+                best_state = copy.deepcopy(model.state_dict())
+            print(f"  → New best model{' saved' if save_outputs else ''} (Val F1: {val_f1:.4f})")
         else:
             epochs_without_improvement += 1
 
@@ -331,13 +370,18 @@ def main(cfg: DictConfig) -> None:
                   f"({epochs_without_improvement} epochs without improvement)")
             break
 
-    # Save training history
-    np.save(output_dir / 'history.npy', history)
+    # Save training history (json for compatibility with visualize_results.py)
+    if save_outputs:
+        with open(output_dir / 'history.json', 'w') as f:
+            json.dump(history, f, indent=2)
 
     # Load best model and evaluate on test set
     print("\nEvaluating on test set...")
-    checkpoint = torch.load(output_dir / 'best_model.pt')
-    model.load_state_dict(checkpoint['model_state_dict'])
+    if save_outputs:
+        checkpoint = torch.load(output_dir / 'best_model.pt')
+        model.load_state_dict(checkpoint['model_state_dict'])
+    elif best_state is not None:
+        model.load_state_dict(best_state)
 
     test_loss, test_acc, test_f1, test_preds, test_labels, test_probs = evaluate(
         model, test_loader, device, class_weights
@@ -358,27 +402,77 @@ def main(cfg: DictConfig) -> None:
     )
     print(report)
 
-    # Save test results
-    np.save(output_dir / 'test_predictions.npy', np.array(test_preds))
-    np.save(output_dir / 'test_labels.npy', np.array(test_labels))
-    np.save(output_dir / 'test_probabilities.npy', np.array(test_probs))
+    # Save test results and artifacts if not in test mode
+    if save_outputs:
+        test_results = {
+            'test_loss': test_loss,
+            'test_accuracy': test_acc,
+            'test_f1': test_f1,
+            'classification_report': report,
+        }
+        with open(output_dir / 'test_results.json', 'w') as f:
+            json.dump(test_results, f, indent=2)
 
-    # Save text report
-    with open(output_dir / 'test_results.txt', 'w') as f:
-        f.write(f"Test Results\n")
-        f.write(f"============\n\n")
-        f.write(f"Loss: {test_loss:.4f}\n")
-        f.write(f"Accuracy: {test_acc:.4f}\n")
-        f.write(f"F1 Score: {test_f1:.4f}\n\n")
-        f.write(f"Classification Report:\n")
-        f.write(f"====================\n\n")
-        f.write(report)
+        np.save(output_dir / 'test_predictions.npy', np.array(test_preds))
+        np.save(output_dir / 'test_labels.npy', np.array(test_labels))
+        np.save(output_dir / 'test_probabilities.npy', np.array(test_probs))
 
-    # Compute and save confusion matrix
-    cm = confusion_matrix(test_labels, test_preds)
-    np.save(output_dir / 'confusion_matrix.npy', cm)
+        # Save text report
+        with open(output_dir / 'test_results.txt', 'w') as f:
+            f.write(f"Test Results\n")
+            f.write(f"============\n\n")
+            f.write(f"Loss: {test_loss:.4f}\n")
+            f.write(f"Accuracy: {test_acc:.4f}\n")
+            f.write(f"F1 Score: {test_f1:.4f}\n\n")
+            f.write(f"Classification Report:\n")
+            f.write(f"====================\n\n")
+            f.write(report)
 
-    print(f"Training complete!. Results saved to: {output_dir}")
+        # Compute and save confusion matrix
+        cm = confusion_matrix(test_labels, test_preds)
+        np.save(output_dir / 'confusion_matrix.npy', cm)
+
+        # Generate visualizations into the run folder (mirrors visualize_results.py)
+        vis_dir = output_dir / 'visualizations'
+        vis_dir.mkdir(exist_ok=True)
+        if (output_dir / 'history.json').exists():
+            plot_training_history(output_dir / 'history.json', vis_dir / 'training_history.png')
+        class_names = [label_encoder.decode(i) for i in range(num_classes)]
+        plot_confusion_matrix(cm, class_names, vis_dir / 'confusion_matrix.png')
+        plot_confusion_matrix(cm, class_names, vis_dir / 'confusion_matrix_normalized.png', normalize=True)
+        plot_per_class_metrics(test_labels, test_preds, class_names, vis_dir / 'per_class_metrics.png')
+        plot_top_predictions(test_probs, test_labels, class_names, vis_dir / 'confidence_analysis.png')
+
+        # Save summary text for quick reference
+        from sklearn.metrics import accuracy_score, f1_score
+        accuracy = accuracy_score(test_labels, test_preds)
+        f1_macro = f1_score(test_labels, test_preds, average='macro', zero_division=0)
+        f1_weighted = f1_score(test_labels, test_preds, average='weighted', zero_division=0)
+        summary = f"""
+Results Summary
+===============
+
+Overall Metrics:
+  - Accuracy: {accuracy:.4f}
+  - F1 Score (Macro): {f1_macro:.4f}
+  - F1 Score (Weighted): {f1_weighted:.4f}
+
+Visualizations saved to: {vis_dir}
+  - training_history.png
+  - confusion_matrix.png
+  - confusion_matrix_normalized.png
+  - per_class_metrics.png
+  - confidence_analysis.png
+
+For detailed per-class metrics, see: {output_dir}/test_results.txt
+"""
+        with open(vis_dir / 'summary.txt', 'w') as f:
+            f.write(summary)
+        print(summary)
+    else:
+        print("Test mode: skipping artifact saving and visualizations.")
+
+    print(f"\n✓ Training complete! Results saved to: {output_dir}" if save_outputs else "\n✓ Training complete (test mode, no artifacts saved).")
 
 
 # Register config with Hydra

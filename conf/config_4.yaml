@@ -1,0 +1,41 @@
+# Hydra configuration for RNA GNN training
+# Usage: python train.py
+# Override any field: python train.py model.architecture=gat training.epochs=200
+
+experiment_name: ${model.architecture}_${features.use_nucleotide}_${features.use_structure_annotation}_${features.use_pseudoknot}_${features.use_position_encoding}_${datetime:%Y%m%d_%H%M%S}
+output_dir: results/runs
+seed: 42
+
+# Feature configuration
+features:
+  use_nucleotide: true
+  use_structure_annotation: true  # Motif annotation (E/S/H/I/M/B/X)
+  use_pseudoknot: true
+  use_position_encoding: false
+
+# Model configuration
+model:
+  architecture: gin  # Options: gcn, gat, gin, gcn_edge, gat_edge, gin_edge
+  hidden_dim: 128
+  num_layers: 3
+  dropout: 0.3
+  pooling: mean  # Options: mean, max
+  num_heads: 4  # Only used for GAT
+
+# Training configuration
+training:
+  epochs: 100
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.00001
+  use_class_weights: true
+  patience: 20  # LR scheduler patience
+  early_stop_patience: 30  # Early stopping patience
+
+# Data paths
+data:
+  train_path: data/splits/train_labels.json
+  val_path: data/splits/val_labels.json
+  test_path: data/splits/test_labels.json
+  rfam_types_path: rfam/rfam_types_full.pkl
+  st_files_dir: data/unzipped/bpRNA_1m_90_STAFILES

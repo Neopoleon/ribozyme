@@ -12,3 +12,6 @@ __pycache__/
 .env/
 .venv/
 venv/
+
+results/runs/
+outputs/

@@ -2,7 +2,7 @@
 # Usage: python train.py
 # Override any field: python train.py model.architecture=gat training.epochs=200
 
-experiment_name: rna_${model.architecture}_test_run
+experiment_name: ${model.architecture}_${features.use_nucleotide}_${features.use_structure_annotation}_${features.use_pseudoknot}_${features.use_position_encoding}_${datetime:%Y%m%d_%H%M%S}
 output_dir: results/runs
 seed: 42
 
@@ -10,7 +10,7 @@ seed: 42
 features:
   use_nucleotide: true
   use_structure_annotation: true  # Motif annotation (E/S/H/I/M/B/X)
-  use_pseudoknot: true
+  use_pseudoknot: false
   use_position_encoding: true
 
 # Model configuration
