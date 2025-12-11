@@ -9,7 +9,7 @@ from .feature_config import FeatureConfig
 @dataclass
 class ModelConfig:
     """Model architecture configuration"""
-    architecture: str = 'gcn'  # 'gcn', 'gat', 'gin'
+    architecture: str = 'gcn'  # 'gcn', 'gat', 'gin', 'gcn_edge', 'gat_edge', 'gin_edge'
     hidden_dim: int = 128
     num_layers: int = 3
     dropout: float = 0.3
@@ -18,8 +18,12 @@ class ModelConfig:
 
     def __post_init__(self) -> None:
         """Validate model configuration"""
-        if self.architecture not in ['gcn', 'gat', 'gin']:
-            raise ValueError(f"Invalid architecture: {self.architecture}")
+        valid_architectures = ['gcn', 'gat', 'gin', 'gcn_edge', 'gat_edge', 'gin_edge']
+        if self.architecture not in valid_architectures:
+            raise ValueError(
+                f"Invalid architecture: {self.architecture}. "
+                f"Choose from {valid_architectures}"
+            )
         if self.pooling not in ['mean', 'max']:
             raise ValueError(f"Invalid pooling: {self.pooling}")
         if self.hidden_dim <= 0:
@@ -78,10 +82,10 @@ class Config:
     This is the top-level config class that Hydra will instantiate.
     """
     experiment_name: str = "rna_gnn_experiment"
-    features: FeatureConfig = None
-    model: ModelConfig = None
-    training: TrainingConfig = None
-    data: DataConfig = None
+    features: FeatureConfig | None = None
+    model: ModelConfig | None = None
+    training: TrainingConfig | None = None
+    data: DataConfig | None = None
     output_dir: str = 'results/runs'
     seed: int = 42
 
@@ -97,6 +101,12 @@ class Config:
             self.data = DataConfig()
 
     def __repr__(self) -> str:
+        assert self.model is not None
+        assert self.training is not None
+        assert self.features is not None
+        assert self.data is not None
+        assert self.features is not None
+
         return (
             f"Config(\n"
             f"  experiment={self.experiment_name}\n"
