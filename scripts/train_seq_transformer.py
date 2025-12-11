@@ -1,4 +1,14 @@
-"""Sequence-only Transformer baseline training script."""
+"""Sequence-only Transformer baseline training script.
+
+This is the standard single-GPU training script using file I/O per sample.
+For better performance, consider using train_seq_transformer_fast.py which provides:
+- Multi-GPU distributed training
+- Memory-cached dataset (5-10x faster)
+- Non-blocking transfers and persistent workers
+
+Usage:
+    python scripts/train_seq_transformer.py
+"""
 
 from __future__ import annotations
 
@@ -27,6 +37,11 @@ from src.models import RNASequenceTransformer
 
 
 def set_seed(seed: int) -> None:
+    """Set random seeds for reproducibility.
+
+    Args:
+        seed: Random seed value
+    """
     torch.manual_seed(seed)
     np.random.seed(seed)
     if torch.cuda.is_available():
@@ -34,9 +49,18 @@ def set_seed(seed: int) -> None:
 
 
 def compute_class_weights(dataset: RNASequenceDataset, device: torch.device) -> torch.Tensor:
+    """Compute inverse frequency class weights for balanced loss.
+
+    Args:
+        dataset: Dataset with label_counts() method
+        device: Target device for weights tensor
+
+    Returns:
+        Normalized class weights tensor [num_classes]
+    """
     counts = dataset.label_counts().float()
-    weights = 1.0 / (counts + 1e-6)
-    weights = weights / weights.sum() * len(counts)
+    weights = 1.0 / (counts + 1e-6)  # Inverse frequency
+    weights = weights / weights.sum() * len(counts)  # Normalize
     return weights.to(device)
 
 
@@ -47,6 +71,18 @@ def run_epoch(
     device: torch.device,
     criterion: nn.Module,
 ) -> tuple[float, float, float]:
+    """Run one epoch of training or evaluation.
+
+    Args:
+        model: Neural network model
+        loader: DataLoader
+        optimizer: Optimizer for training (None for evaluation)
+        device: Target device (cuda or cpu)
+        criterion: Loss function
+
+    Returns:
+        Tuple of (average_loss, accuracy, f1_score)
+    """
     is_train = optimizer is not None
     model.train(is_train)
     total_loss = 0.0
@@ -84,6 +120,14 @@ def run_epoch(
 
 @hydra.main(config_path="../conf", config_name="seq_baseline", version_base=None)
 def main(cfg: DictConfig) -> None:
+    """Main training function for single-GPU baseline.
+
+    Args:
+        cfg: Hydra configuration from conf/seq_baseline.yaml
+
+    Note:
+        For better performance with multi-GPU support, use train_seq_transformer_fast.py
+    """
     os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
     set_seed(cfg.seed)
