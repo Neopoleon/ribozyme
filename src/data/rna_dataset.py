@@ -3,7 +3,7 @@
 import json
 import pickle
 from pathlib import Path
-from typing import Optional, List, Dict, Tuple
+from typing import Optional, List, Dict, Tuple, TYPE_CHECKING
 import torch
 from torch_geometric.data import Data, Dataset
 import numpy as np
@@ -11,6 +11,9 @@ import numpy as np
 from .parser import parse_st_file, extract_rfid, get_meta_type
 from .graph_builder import rna_to_graph
 from .label_encoder import LabelEncoder
+
+if TYPE_CHECKING:
+    from ..config import FeatureConfig
 
 
 class RNADataset(Dataset):
@@ -28,6 +31,7 @@ class RNADataset(Dataset):
         rfam_types_path: str = 'rfam/rfam_types_full.pkl',
         st_files_dir: str = 'data/unzipped/bpRNA_1m_90_STAFILES',
         label_encoder: Optional[LabelEncoder] = None,
+        feature_config: Optional['FeatureConfig'] = None,
         transform=None,
         pre_transform=None,
         pre_filter=None,
@@ -39,6 +43,7 @@ class RNADataset(Dataset):
             rfam_types_path: Path to rfam_types_full.pkl
             st_files_dir: Directory containing .st structure files
             label_encoder: LabelEncoder instance. If None, creates default.
+            feature_config: FeatureConfig instance. If None, uses all features.
             transform: Optional transform to apply to data objects
             pre_transform: Optional pre-transform
             pre_filter: Optional pre-filter
@@ -46,6 +51,7 @@ class RNADataset(Dataset):
         self.fold_labels_path = fold_labels_path
         self.rfam_types_path = rfam_types_path
         self.st_files_dir = Path(st_files_dir)
+        self.feature_config = feature_config
 
         # Load metadata
         with open(fold_labels_path, 'r') as f:
@@ -101,9 +107,9 @@ class RNADataset(Dataset):
 
         Returns:
             PyG Data object with:
-            - x: node features [num_nodes, 14]
+            - x: node features [num_nodes, feature_dim]
             - edge_index: edge indices [2, num_edges]
-            - edge_attr: edge types [num_edges, 1]
+            - edge_attr: edge types [num_edges, 5] (5D one-hot)
             - y: label (integer)
             - metadata: dict with bprna_id, rfid, meta_type, etc.
         """
@@ -132,6 +138,7 @@ class RNADataset(Dataset):
             dot_bracket=rna_data['dot_bracket'],
             structure=rna_data['structure'],
             pseudoknot=rna_data['pseudoknot'],
+            feature_config=self.feature_config,
         )
 
         # Encode label

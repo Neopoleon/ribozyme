@@ -27,18 +27,18 @@ class LabelEncoder:
                 'Cis-reg; frameshift_element;',
                 'Cis-reg; leader;',
                 'Cis-reg; riboswitch;',
-                'Cis-reg; thermoregulator;',
+                # 'Cis-reg; thermoregulator;', # too few samples, removed
                 'Gene;',
                 'Gene; CRISPR;',
                 'Gene; antisense;',
                 'Gene; antitoxin;',
-                'Gene; lncRNA;',
+                # 'Gene; lncRNA;', # too few samples, removed
                 'Gene; miRNA;',
                 'Gene; rRNA;',
                 'Gene; ribozyme;',
                 'Gene; sRNA;',
-                'Gene; snRNA;',
-                'Gene; snRNA; snoRNA;',
+                # 'Gene; snRNA;', # too few samples, removed
+                # 'Gene; snRNA; snoRNA;', # too few samples, removed
                 'Gene; snRNA; snoRNA; CD-box;',
                 'Gene; snRNA; snoRNA; HACA-box;',
                 'Gene; snRNA; snoRNA; scaRNA;',
