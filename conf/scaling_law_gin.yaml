@@ -1,0 +1,46 @@
+# Scaling Law Experiment - GIN Model (Machine 1)
+# Usage: python train_scaling_law.py --config-name=scaling_law_gin -m
+
+experiment_name: scaling_law_gin_frac${data_fraction}_seed${seed}_${now:%Y%m%d_%H%M%S}
+output_dir: results/scaling_law_gin
+
+# Scaling experiment parameters
+data_fraction: 1.0  # Will be swept in multirun
+seed: 0  # Will be swept in multirun
+
+# Data paths
+data:
+  train_path: /home/jeff/ribozyme/data/splits/train_labels_7.json
+  val_path: /home/jeff/ribozyme/data/splits/val_labels_7.json
+  test_path: /home/jeff/ribozyme/data/splits/test_labels_7.json
+  rfam_types_path: rfam/rfam_types_full.pkl
+  st_files_dir: data/unzipped/bpRNA_1m_90_STAFILES
+
+# Model configuration: GIN with all features (best-performing)
+model:
+  architecture: gin
+  hidden_dim: 128
+  num_layers: 3
+  dropout: 0.3
+  pooling: mean
+
+# Training configuration
+training:
+  epochs: 100
+  batch_size: 32
+  lr: 0.001
+  weight_decay: 0.00001
+  use_class_weights: true
+  patience: 20
+  early_stop_patience: 30
+
+# Hydra multirun sweep
+defaults:
+  - override hydra/launcher: basic
+
+hydra:
+  mode: MULTIRUN
+  sweeper:
+    params:
+      data_fraction: 1.0,0.8,0.4,0.2,0.1
+      seed: 0,1,2,3,4
