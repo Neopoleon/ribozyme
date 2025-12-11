@@ -2,7 +2,7 @@
 # Usage: python train.py
 # Override any field: python train.py model.architecture=gat training.epochs=200
 
-experiment_name: rna_gnn_${model.architecture}
+experiment_name: rna_${model.architecture}_test_run
 output_dir: results/runs
 seed: 42
 
@@ -15,7 +15,7 @@ features:
 
 # Model configuration
 model:
-  architecture: gcn  # Options: gcn, gat, gin, gcn_edge, gat_edge, gin_edge
+  architecture: gin  # Options: gcn, gat, gin, gcn_edge, gat_edge, gin_edge
   hidden_dim: 128
   num_layers: 3
   dropout: 0.3

@@ -238,15 +238,24 @@ def main(cfg: DictConfig) -> None:
 
     # Initialize model
     print(f"\nInitializing {cfg.model.architecture.upper()} model...")
+
+    # Build model kwargs
+    model_kwargs = {
+        'num_node_features': num_node_features,
+        'num_classes': num_classes,
+        'hidden_dim': cfg.model.hidden_dim,
+        'num_layers': cfg.model.num_layers,
+        'dropout': cfg.model.dropout,
+        'pooling': cfg.model.pooling,
+    }
+
+    # Only add num_heads for GAT models
+    if 'gat' in cfg.model.architecture.lower():
+        model_kwargs['num_heads'] = cfg.model.num_heads
+
     model = get_model(
         cfg.model.architecture,
-        num_node_features=num_node_features,
-        num_classes=num_classes,
-        hidden_dim=cfg.model.hidden_dim,
-        num_layers=cfg.model.num_layers,
-        dropout=cfg.model.dropout,
-        pooling=cfg.model.pooling,
-        num_heads=cfg.model.num_heads,  # Only used by GAT
+        **model_kwargs
     ).to(device)
 
     # Count parameters
