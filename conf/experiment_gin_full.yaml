@@ -1,0 +1,22 @@
+# @package _global_
+# GIN model with all features
+
+experiment_name: gin_full_features
+
+model:
+  architecture: gin
+  hidden_dim: 128
+  num_layers: 3
+  dropout: 0.3
+  pooling: mean
+
+features:
+  use_nucleotide: true
+  use_structure_annotation: true
+  use_pseudoknot: true
+  use_position_encoding: true
+
+training:
+  epochs: 100
+  batch_size: 32
+  lr: 0.001
