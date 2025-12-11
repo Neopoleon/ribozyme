@@ -17,7 +17,7 @@ def extract_null_rna_type_paths():
 
     # Define paths
     base_dir = Path(__file__).parent.parent
-    input_file = base_dir / "results" / "fold1_labels.json"
+    input_file = base_dir / "results" / "scrap_runs" / "fold1_labels.json"
     output_file = base_dir / "data" / "splits" / "fold4.json"
 
     print(f"Reading from: {input_file}")

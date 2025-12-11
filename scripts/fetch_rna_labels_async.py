@@ -4,7 +4,7 @@ Fetch RNA type and reference name from bpRNA database asynchronously.
 
 Usage:
     python scripts/fetch_rna_labels_async.py --input-dir data/unzipped/bpRNA_1m_90_bpseqFiles --output results/rna_labels.json
-    python scripts/fetch_rna_labels_async.py --input-json data/splits/fold1.json --output results/fold1_labels.json
+    python scripts/fetch_rna_labels_async.py --input-json data/splits/fold1.json --output results/scrap_runs/fold1_labels.json
 """
 
 from __future__ import annotations
