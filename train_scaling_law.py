@@ -68,7 +68,7 @@ def stratified_subsample_dataset(
     dataset: RNADataset,
     fraction: float,
     seed: int,
-) -> tuple[list[int], dict[str, int]]:
+) -> tuple[list[int], dict[str, int], dict[str, int]]:
     """
     Stratified subsampling of dataset indices to maintain class distribution.
 
@@ -81,14 +81,21 @@ def stratified_subsample_dataset(
         selected_indices: List of selected dataset indices
         class_distribution: Dict mapping class names to counts in the subsample
     """
-    if fraction >= 1.0:
-        return list(range(len(dataset))), {}
-
     # Collect all labels
     all_labels = []
     for i in range(len(dataset)):
         all_labels.append(dataset[i].y.item())
     all_labels = np.array(all_labels)
+
+    # Compute full-dataset class distribution for reference
+    full_unique, full_counts = np.unique(all_labels, return_counts=True)
+    full_distribution = {
+        dataset.label_encoder.decode(int(label)): int(count)
+        for label, count in zip(full_unique, full_counts)
+    }
+
+    if fraction >= 1.0:
+        return list(range(len(dataset))), full_distribution, full_distribution
 
     # Stratified split
     all_indices = np.arange(len(dataset))
@@ -107,7 +114,7 @@ def stratified_subsample_dataset(
         for label, count in zip(unique_labels, counts)
     }
 
-    return selected_indices.tolist(), class_distribution
+    return selected_indices.tolist(), class_distribution, full_distribution
 
 
 def train_epoch(
@@ -203,6 +210,37 @@ def compute_class_weights(
     return weights.to(device)
 
 
+def _print_class_distribution(title: str, distribution: dict[str, int]) -> None:
+    """Pretty-print class counts and percentages."""
+    if not distribution:
+        print(f"{title}: (no samples)")
+        return
+    total = sum(distribution.values())
+    print(title)
+    for class_name in sorted(distribution):
+        count = distribution[class_name]
+        pct = (count / total) * 100 if total > 0 else 0.0
+        print(f"  {class_name}: {count} ({pct:.2f}%)")
+
+
+def _max_percentage_difference(
+    baseline: dict[str, int],
+    comparison: dict[str, int],
+) -> float:
+    """Compute max absolute percentage difference between two distributions."""
+    baseline_total = sum(baseline.values())
+    comparison_total = sum(comparison.values())
+    if baseline_total == 0 or comparison_total == 0:
+        return 0.0
+
+    max_diff = 0.0
+    for class_name in baseline:
+        baseline_pct = baseline[class_name] / baseline_total * 100
+        comparison_pct = comparison.get(class_name, 0) / comparison_total * 100
+        max_diff = max(max_diff, abs(baseline_pct - comparison_pct))
+    return max_diff
+
+
 @hydra.main(version_base=None, config_path="conf", config_name="scaling_law")
 def main(cfg: DictConfig) -> None:
     """Main scaling law experiment function"""
@@ -211,7 +249,11 @@ def main(cfg: DictConfig) -> None:
     run_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     fraction_str = f"{cfg.data_fraction:.2f}".replace(".", "p")
     model_tag = getattr(cfg.model, "architecture", "model")
-    run_name = f"scaling_{model_tag}_frac{fraction_str}_seed{cfg.seed}_{run_timestamp}"
+    experiment_name = cfg.get("experiment_name")
+    if experiment_name:
+        run_name = experiment_name
+    else:
+        run_name = f"scaling_{model_tag}_frac{fraction_str}_seed{cfg.seed}_{run_timestamp}"
     project_root = Path(get_original_cwd())
     base_output_dir = project_root / cfg.output_dir
     output_dir = base_output_dir / run_name
@@ -308,7 +350,11 @@ def main(cfg: DictConfig) -> None:
     # Stratified subsample training data
     print(f"\nSubsampling training data to {cfg.data_fraction*100:.1f}%...")
     start_time = time.time()
-    train_indices, class_dist = stratified_subsample_dataset(
+    (
+        train_indices,
+        subsample_class_dist,
+        full_class_dist,
+    ) = stratified_subsample_dataset(
         train_dataset_full,
         cfg.data_fraction,
         cfg.seed,
@@ -316,10 +362,20 @@ def main(cfg: DictConfig) -> None:
     subsample_time = time.time() - start_time
 
     print(f"Selected {len(train_indices)} training samples ({subsample_time:.2f}s)")
-    if class_dist:
-        print("\nClass distribution in subsample:")
-        for class_name, count in sorted(class_dist.items()):
-            print(f"  {class_name}: {count}")
+
+    print()
+    _print_class_distribution("Full training class distribution:", full_class_dist)
+
+    if cfg.data_fraction < 1.0:
+        print()
+        _print_class_distribution(
+            "Class distribution in stratified subsample:",
+            subsample_class_dist,
+        )
+        max_diff = _max_percentage_difference(full_class_dist, subsample_class_dist)
+        print(f"Max absolute percentage difference vs full dataset: {max_diff:.2f}%")
+    else:
+        print("\nUsing 100% of the training data; distribution matches the full dataset.")
 
     # Create subset of training dataset
     train_dataset = torch.utils.data.Subset(train_dataset_full, train_indices)
