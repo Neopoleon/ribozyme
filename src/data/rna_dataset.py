@@ -3,14 +3,14 @@
 import json
 import pickle
 from pathlib import Path
-from typing import Optional, List, Dict, Tuple, TYPE_CHECKING
+from typing import TYPE_CHECKING
+
 import torch
 from torch_geometric.data import Data, Dataset
-import numpy as np
 
-from .parser import parse_st_file, extract_rfid, get_meta_type
 from .graph_builder import rna_to_graph
 from .label_encoder import LabelEncoder
+from .parser import extract_rfid, get_meta_type, parse_st_file
 
 if TYPE_CHECKING:
     from ..config import FeatureConfig
@@ -30,8 +30,8 @@ class RNADataset(Dataset):
         fold_labels_path: str,
         rfam_types_path: str = 'rfam/rfam_types_full.pkl',
         st_files_dir: str = 'data/unzipped/bpRNA_1m_90_STAFILES',
-        label_encoder: Optional[LabelEncoder] = None,
-        feature_config: Optional['FeatureConfig'] = None,
+        label_encoder: LabelEncoder | None = None,
+        feature_config: 'FeatureConfig | None' = None,
         transform=None,
         pre_transform=None,
         pre_filter=None,
@@ -76,12 +76,12 @@ class RNADataset(Dataset):
         super().__init__(root, transform, pre_transform, pre_filter)
 
     @property
-    def raw_file_names(self) -> List[str]:
+    def raw_file_names(self) -> list[str]:
         """Required by PyG - list of raw files"""
         return []  # We handle file loading manually
 
     @property
-    def processed_file_names(self) -> List[str]:
+    def processed_file_names(self) -> list[str]:
         """Required by PyG - list of processed files"""
         # We'll process on-the-fly for now (can add caching later)
         return []
@@ -142,6 +142,7 @@ class RNADataset(Dataset):
         )
 
         # Encode label
+        assert meta_type is not None, f"meta_type should not be None for {bprna_id}"
         try:
             label = self.label_encoder.encode(meta_type)
         except KeyError:
@@ -165,10 +166,9 @@ class RNADataset(Dataset):
 
         return data
 
-    def get_statistics(self) -> Dict:
+    def get_statistics(self) -> dict:
         """Compute dataset statistics"""
         label_counts = {}
-        seq_lengths = []
 
         for i in range(len(self)):
             entry_idx = self.valid_indices[i]

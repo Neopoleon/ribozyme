@@ -1,0 +1,23 @@
+# @package _global_
+# Compare edge-aware GIN vs baseline GIN
+
+experiment_name: edge_aware_comparison_gin
+
+model:
+  architecture: gin_edge  # Compare with: gin
+  hidden_dim: 128
+  num_layers: 3
+  dropout: 0.3
+  pooling: mean
+
+features:
+  use_nucleotide: true
+  use_structure_annotation: true
+  use_pseudoknot: true
+  use_position_encoding: true
+
+training:
+  epochs: 150
+  batch_size: 32
+  lr: 0.001
+  use_class_weights: true

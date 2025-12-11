@@ -15,7 +15,7 @@ features:
 
 # Model configuration
 model:
-  architecture: gcn  # Options: gcn, gat, gin
+  architecture: gcn  # Options: gcn, gat, gin, gcn_edge, gat_edge, gin_edge
   hidden_dim: 128
   num_layers: 3
   dropout: 0.3

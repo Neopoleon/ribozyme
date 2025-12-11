@@ -2,14 +2,14 @@
 
 import json
 import pickle
-from pathlib import Path
-from typing import Dict, List, Tuple
 from collections import defaultdict
+from pathlib import Path
+
 import numpy as np
 from sklearn.model_selection import train_test_split
 
 
-def load_all_fold_labels(results_dir: str = 'results') -> List[Dict]:
+def load_all_fold_labels(results_dir: str = 'results') -> list[dict]:
     """Load and combine all fold label files."""
     all_labels = []
     for fold_num in range(1, 5):
@@ -26,13 +26,13 @@ def extract_rfid(reference_name: str) -> str:
 
 
 def create_stratified_splits(
-    all_labels: List[Dict],
+    all_labels: list[dict],
     rfam_types_path: str = 'rfam/rfam_types_full.pkl',
     train_ratio: float = 0.8,
     val_ratio: float = 0.1,
     test_ratio: float = 0.1,
     random_seed: int = 42,
-) -> Tuple[List[Dict], List[Dict], List[Dict]]:
+) -> tuple[list[dict], list[dict], list[dict]]:
     """
     Create stratified train/val/test splits ensuring balanced class distribution.
 
@@ -126,11 +126,11 @@ def create_stratified_splits(
 
 
 def save_splits(
-    train_data: List[Dict],
-    val_data: List[Dict],
-    test_data: List[Dict],
+    train_data: list[dict],
+    val_data: list[dict],
+    test_data: list[dict],
     output_dir: str = 'data/splits',
-):
+) -> None:
     """Save train/val/test splits to JSON files."""
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -149,11 +149,11 @@ def save_splits(
 
 
 def print_split_statistics(
-    train_data: List[Dict],
-    val_data: List[Dict],
-    test_data: List[Dict],
+    train_data: list[dict],
+    val_data: list[dict],
+    test_data: list[dict],
     rfam_types_path: str = 'rfam/rfam_types_full.pkl',
-):
+) -> None:
     """Print detailed statistics about the splits."""
     with open(rfam_types_path, 'rb') as f:
         rfam_types = pickle.load(f)

@@ -1,8 +1,9 @@
 """Convert RNA structure to graph representation for GNN"""
 
-import torch
+from typing import TYPE_CHECKING
+
 import numpy as np
-from typing import Dict, Tuple, List, TYPE_CHECKING
+import torch
 
 if TYPE_CHECKING:
     from ..config import FeatureConfig
@@ -19,7 +20,7 @@ BRACKET_PAIRS = {
 }
 
 
-def parse_dot_bracket(dot_bracket: str) -> List[Tuple[int, int, int]]:
+def parse_dot_bracket(dot_bracket: str) -> list[tuple[int, int, int]]:
     """
     Parse dot-bracket notation to extract base pair edges.
 
@@ -99,7 +100,7 @@ def rna_to_graph(
     structure: str,
     pseudoknot: str,
     feature_config=None,
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
     Convert RNA structure information to graph representation.
 

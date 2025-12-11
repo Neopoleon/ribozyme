@@ -1,8 +1,6 @@
 """Label encoding for RNA meta-types"""
 
 import json
-from typing import Dict, List, Optional
-from pathlib import Path
 
 
 class LabelEncoder:
@@ -12,7 +10,7 @@ class LabelEncoder:
     Handles the 23 unique meta-type categories from RFAM.
     """
 
-    def __init__(self, meta_types: Optional[List[str]] = None):
+    def __init__(self, meta_types: list[str] | None = None):
         """
         Initialize label encoder.
 
@@ -102,5 +100,5 @@ class LabelEncoder:
             config = json.load(f)
         return cls(meta_types=config['meta_types'])
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"LabelEncoder(num_classes={self.num_classes})"
