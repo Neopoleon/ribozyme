@@ -2,7 +2,7 @@
 # Usage: python train.py
 # Override any field: python train.py model.architecture=gat training.epochs=200
 
-experiment_name: ${model.architecture}_${features.use_nucleotide}_${features.use_structure_annotation}_${features.use_pseudoknot}_${features.use_position_encoding}_split_2_${datetime:%Y%m%d_%H%M%S}
+experiment_name: ${model.architecture}_${features.use_nucleotide}_${features.use_structure_annotation}_${features.use_pseudoknot}_${features.use_position_encoding}_split_2_${now:%Y%m%d_%H%M%S}
 output_dir: results/runs
 test: false
 seed: 42

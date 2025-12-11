@@ -1,4 +1,4 @@
-experiment_name: ${model.architecture}_seq_only_${datetime:%Y%m%d_%H%M%S}
+experiment_name: ${model.architecture}_seq_only_${now:%Y%m%d_%H%M%S}
 output_dir: results/gnn_seq_baseline/${experiment_name}
 test: false
 seed: 42
