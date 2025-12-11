@@ -9,6 +9,7 @@ from .gnn import (
     RNAGINEdge,
     get_model,
 )
+from .sequence_transformer import RNASequenceTransformer
 
 __all__ = [
     'RNAGCN',
@@ -18,4 +19,5 @@ __all__ = [
     'RNAGATEdge',
     'RNAGINEdge',
     'get_model',
+    'RNASequenceTransformer',
 ]
