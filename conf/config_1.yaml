@@ -5,6 +5,7 @@
 experiment_name: ${model.architecture}_${features.use_nucleotide}_${features.use_structure_annotation}_${features.use_pseudoknot}_${features.use_position_encoding}_${datetime:%Y%m%d_%H%M%S}
 output_dir: results/runs
 seed: 42
+test: false
 
 # Feature configuration
 features:

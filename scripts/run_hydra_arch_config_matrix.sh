@@ -7,8 +7,8 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${REPO_ROOT}"
 
-ARCHES=(gin gat gcn)
-CONFIGS=(config_0 config_1 config_2 config_3 config_4)
+ARCHES=(gin) # gat gcn
+CONFIGS=(config_1 config_2 config_3 config_4) # config_0 
 
 SUCCESS=0
 FAILURES=()
@@ -17,7 +17,7 @@ for cfg in "${CONFIGS[@]}"; do
   for arch in "${ARCHES[@]}"; do
     echo "---- Running train_hydra --config-name ${cfg} model.architecture=${arch} test=false ----"
     if python -m train_hydra --config-name "${cfg}" model.architecture="${arch}" test=false; then
-      ((SUCCESS++))
+      ((SUCCESS += 1))  # use += to keep exit status zero under `set -e`
     else
       FAILURES+=("${cfg}:${arch}")
     fi
