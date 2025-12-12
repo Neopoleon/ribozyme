@@ -1,7 +1,9 @@
 # Classifying Small RNAs via Structure-Aware Graph Neural Networks
 
 **Authors:** Jeff Liu, Lucas Sosnick, Eli Meyers
+
 **Institution:** Stanford University CS224W (Fall 2025)
+
 **Equal Contribution**
 
 ---
